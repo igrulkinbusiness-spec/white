@@ -14,11 +14,11 @@ export const AboutPage = () => {
     { title: t('nav.tollRoads'), desc: t('home.tollRoadsDesc') },
     { title: t('nav.trafficRules'), desc: t('home.trafficRulesDesc') },
     { title: t('nav.scenicRoutes'), desc: t('home.scenicRoutesDesc') },
-    { title: t('nav.carRental'), desc: t('home.carRentalDesc') },
     { title: t('nav.gasStations'), desc: t('home.gasStationsDesc') },
     { title: t('nav.ztl'), desc: t('home.parkingDesc') },
     { title: t('nav.roadSigns'), desc: t('home.roadSignsDesc') },
-    { title: t('nav.emergency'), desc: 'Numeri, assistenza in caso di incidente' },
+    { title: t('nav.emergency'), desc: t('home.emergencyDesc') },
+    { title: t('nav.tips'), desc: t('home.tipsDesc') },
   ];
 
   return (
