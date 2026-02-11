@@ -3,7 +3,6 @@ import {
   ArrowRight, 
   MapPin, 
   Shield, 
-  Car, 
   Fuel, 
   ParkingCircle, 
   AlertTriangle,
