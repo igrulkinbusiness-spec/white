@@ -1,36 +1,39 @@
 import { Link } from 'react-router-dom';
 import { MapPin, Mail, Clock } from 'lucide-react';
-
-const footerLinks = [
-  {
-    title: 'Дороги',
-    links: [
-      { name: 'Автострады', path: '/autostrade' },
-      { name: 'Платные дороги', path: '/toll-roads' },
-      { name: 'Живописные маршруты', path: '/scenic-routes' },
-    ]
-  },
-  {
-    title: 'Правила',
-    links: [
-      { name: 'ПДД Италии', path: '/traffic-rules' },
-      { name: 'Дорожные знаки', path: '/road-signs' },
-      { name: 'Скорость', path: '/speed-limits' },
-      { name: 'Зоны ZTL', path: '/parking' },
-    ]
-  },
-  {
-    title: 'Полезное',
-    links: [
-      { name: 'Аренда авто', path: '/car-rental' },
-      { name: 'Заправки', path: '/gas-stations' },
-      { name: 'Экстренные службы', path: '/emergency' },
-      { name: 'Советы', path: '/tips' },
-    ]
-  },
-];
+import { useLanguage } from '../../i18n';
 
 export const Footer = () => {
+  const { t } = useLanguage();
+
+  const footerLinks = [
+    {
+      title: t('footer.roads'),
+      links: [
+        { name: t('nav.autostrade'), path: '/autostrade' },
+        { name: t('nav.tollRoads'), path: '/toll-roads' },
+        { name: t('nav.scenicRoutes'), path: '/scenic-routes' },
+      ]
+    },
+    {
+      title: t('footer.rules'),
+      links: [
+        { name: t('nav.trafficRules'), path: '/traffic-rules' },
+        { name: t('nav.roadSigns'), path: '/road-signs' },
+        { name: t('nav.speedLimits'), path: '/speed-limits' },
+        { name: t('nav.ztl'), path: '/parking' },
+      ]
+    },
+    {
+      title: t('footer.useful'),
+      links: [
+        { name: t('nav.carRental'), path: '/car-rental' },
+        { name: t('nav.gasStations'), path: '/gas-stations' },
+        { name: t('nav.emergency'), path: '/emergency' },
+        { name: t('nav.tips'), path: '/tips' },
+      ]
+    },
+  ];
+
   return (
     <footer className="bg-italia-green text-white" data-testid="footer">
       <div className="container mx-auto px-4 md:px-8 max-w-7xl">
@@ -45,26 +48,25 @@ export const Footer = () => {
               <div>
                 <h2 className="font-serif text-2xl font-medium">Strade d'Italia</h2>
                 <p className="text-sm text-white/70 font-mono uppercase tracking-wider">
-                  Путеводитель по дорогам
+                  {t('common.brandTagline')}
                 </p>
               </div>
             </div>
             <p className="text-white/80 leading-relaxed mb-6 max-w-sm">
-              Ваш надёжный гид по итальянским дорогам. Всё, что нужно знать для 
-              комфортного автопутешествия по солнечной Италии.
+              {t('footer.description')}
             </p>
             <div className="space-y-3 text-sm text-white/70">
               <div className="flex items-center gap-3">
                 <MapPin className="w-4 h-4" />
-                <span>Информационный портал</span>
+                <span>{t('footer.infoPortal')}</span>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="w-4 h-4" />
-                <span>info@strade-italia.ru</span>
+                <span>info@strade-italia.it</span>
               </div>
               <div className="flex items-center gap-3">
                 <Clock className="w-4 h-4" />
-                <span>Обновлено: Декабрь 2025</span>
+                <span>{t('footer.updated')}</span>
               </div>
             </div>
           </div>
@@ -94,14 +96,14 @@ export const Footer = () => {
         {/* Bottom Bar */}
         <div className="py-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-white/60">
-            © 2025 Strade d'Italia. Информационный портал.
+            {t('footer.copyright')}
           </p>
           <div className="flex items-center gap-6 text-sm text-white/60">
             <Link to="/about" className="hover:text-white transition-colors">
-              О сайте
+              {t('nav.about')}
             </Link>
             <Link to="/contact" className="hover:text-white transition-colors">
-              Контакты
+              {t('nav.contact')}
             </Link>
           </div>
         </div>

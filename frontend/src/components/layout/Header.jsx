@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Globe } from 'lucide-react';
+import { useLanguage } from '../../i18n';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,40 +9,41 @@ import {
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
 
-const navItems = [
-  { name: 'Главная', path: '/' },
-  { 
-    name: 'Дороги', 
-    children: [
-      { name: 'Автострады', path: '/autostrade' },
-      { name: 'Платные дороги', path: '/toll-roads' },
-      { name: 'Живописные маршруты', path: '/scenic-routes' },
-    ]
-  },
-  { 
-    name: 'Правила', 
-    children: [
-      { name: 'ПДД Италии', path: '/traffic-rules' },
-      { name: 'Дорожные знаки', path: '/road-signs' },
-      { name: 'Скоростные ограничения', path: '/speed-limits' },
-      { name: 'Зоны ZTL', path: '/parking' },
-    ]
-  },
-  { 
-    name: 'Сервисы', 
-    children: [
-      { name: 'Заправки', path: '/gas-stations' },
-      { name: 'Аренда авто', path: '/car-rental' },
-      { name: 'Экстренные службы', path: '/emergency' },
-    ]
-  },
-  { name: 'Советы', path: '/tips' },
-  { name: 'О сайте', path: '/about' },
-];
-
 export const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { language, setLanguage, t } = useLanguage();
+
+  const navItems = [
+    { name: t('nav.home'), path: '/' },
+    { 
+      name: t('nav.roads'), 
+      children: [
+        { name: t('nav.autostrade'), path: '/autostrade' },
+        { name: t('nav.tollRoads'), path: '/toll-roads' },
+        { name: t('nav.scenicRoutes'), path: '/scenic-routes' },
+      ]
+    },
+    { 
+      name: t('nav.rules'), 
+      children: [
+        { name: t('nav.trafficRules'), path: '/traffic-rules' },
+        { name: t('nav.roadSigns'), path: '/road-signs' },
+        { name: t('nav.speedLimits'), path: '/speed-limits' },
+        { name: t('nav.ztl'), path: '/parking' },
+      ]
+    },
+    { 
+      name: t('nav.services'), 
+      children: [
+        { name: t('nav.gasStations'), path: '/gas-stations' },
+        { name: t('nav.carRental'), path: '/car-rental' },
+        { name: t('nav.emergency'), path: '/emergency' },
+      ]
+    },
+    { name: t('nav.tips'), path: '/tips' },
+    { name: t('nav.about'), path: '/about' },
+  ];
 
   const isActive = (path) => location.pathname === path;
 
@@ -59,7 +61,7 @@ export const Header = () => {
                 Strade d'Italia
               </h1>
               <p className="text-xs text-italia-text-muted font-mono uppercase tracking-wider">
-                Путеводитель по дорогам
+                {t('common.brandTagline')}
               </p>
             </div>
           </Link>
@@ -102,24 +104,45 @@ export const Header = () => {
             ))}
           </nav>
 
-          {/* Contact Button */}
-          <Link 
-            to="/contact"
-            className="hidden lg:flex items-center px-6 py-2.5 bg-italia-green text-white text-sm font-medium rounded-full hover:bg-italia-green-dark transition-all btn-italia"
-            data-testid="contact-btn"
-          >
-            Связаться
-          </Link>
+          {/* Language Switcher & Contact Button */}
+          <div className="hidden lg:flex items-center gap-3">
+            {/* Language Switcher */}
+            <button
+              onClick={() => setLanguage(language === 'it' ? 'en' : 'it')}
+              className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-italia-text hover:text-italia-green transition-colors border border-italia-border rounded-full hover:border-italia-green"
+              data-testid="language-switcher"
+            >
+              <Globe className="w-4 h-4" />
+              <span className="uppercase">{language === 'it' ? 'EN' : 'IT'}</span>
+            </button>
+
+            <Link 
+              to="/contact"
+              className="flex items-center px-6 py-2.5 bg-italia-green text-white text-sm font-medium rounded-full hover:bg-italia-green-dark transition-all btn-italia"
+              data-testid="contact-btn"
+            >
+              {t('nav.contact')}
+            </Link>
+          </div>
 
           {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-italia-text"
-            data-testid="mobile-menu-btn"
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          <div className="lg:hidden flex items-center gap-2">
+            <button
+              onClick={() => setLanguage(language === 'it' ? 'en' : 'it')}
+              className="p-2 text-italia-text"
+              data-testid="mobile-language-switcher"
+            >
+              <Globe className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 text-italia-text"
+              data-testid="mobile-menu-btn"
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -166,7 +189,7 @@ export const Header = () => {
               onClick={() => setMobileMenuOpen(false)}
               className="block mt-4 py-3 text-center bg-italia-green text-white text-sm font-medium rounded-full"
             >
-              Связаться
+              {t('nav.contact')}
             </Link>
           </nav>
         </div>

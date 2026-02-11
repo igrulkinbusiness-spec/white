@@ -1,5 +1,6 @@
 import "@/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { LanguageProvider } from "./i18n";
 import { Layout } from "./components/layout/Layout";
 
 // Pages
@@ -20,28 +21,30 @@ import { ContactPage } from "./pages/ContactPage";
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/autostrade" element={<AutostradePage />} />
-            <Route path="/toll-roads" element={<TollRoadsPage />} />
-            <Route path="/traffic-rules" element={<TrafficRulesPage />} />
-            <Route path="/scenic-routes" element={<ScenicRoutesPage />} />
-            <Route path="/car-rental" element={<CarRentalPage />} />
-            <Route path="/gas-stations" element={<GasStationsPage />} />
-            <Route path="/parking" element={<ParkingPage />} />
-            <Route path="/road-signs" element={<RoadSignsPage />} />
-            <Route path="/speed-limits" element={<SpeedLimitsPage />} />
-            <Route path="/emergency" element={<EmergencyPage />} />
-            <Route path="/tips" element={<TipsPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-          </Routes>
-        </Layout>
-      </BrowserRouter>
-    </div>
+    <LanguageProvider>
+      <div className="App">
+        <BrowserRouter>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/autostrade" element={<AutostradePage />} />
+              <Route path="/toll-roads" element={<TollRoadsPage />} />
+              <Route path="/traffic-rules" element={<TrafficRulesPage />} />
+              <Route path="/scenic-routes" element={<ScenicRoutesPage />} />
+              <Route path="/car-rental" element={<CarRentalPage />} />
+              <Route path="/gas-stations" element={<GasStationsPage />} />
+              <Route path="/parking" element={<ParkingPage />} />
+              <Route path="/road-signs" element={<RoadSignsPage />} />
+              <Route path="/speed-limits" element={<SpeedLimitsPage />} />
+              <Route path="/emergency" element={<EmergencyPage />} />
+              <Route path="/tips" element={<TipsPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+            </Routes>
+          </Layout>
+        </BrowserRouter>
+      </div>
+    </LanguageProvider>
   );
 }
 
