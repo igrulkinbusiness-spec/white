@@ -26,7 +26,6 @@ export const Footer = () => {
     {
       title: t('footer.useful'),
       links: [
-        { name: t('nav.carRental'), path: '/car-rental' },
         { name: t('nav.gasStations'), path: '/gas-stations' },
         { name: t('nav.emergency'), path: '/emergency' },
         { name: t('nav.tips'), path: '/tips' },
