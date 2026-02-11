@@ -45,6 +45,7 @@ export const translations = {
       scenicRoutesDesc: 'Le strade più belle d\'Italia per viaggi indimenticabili',
       carRentalDesc: 'Come noleggiare un\'auto e cosa sapere',
       gasStationsDesc: 'Informazioni su distributori, prezzi e servizi',
+      emergencyDesc: 'Numeri di emergenza e assistenza stradale',
       roadSignsDesc: 'Segnali italiani e loro significato',
       speedLimitsDesc: 'Limiti di velocità sulle diverse strade',
       parkingDesc: 'Zone a traffico limitato nelle città',
