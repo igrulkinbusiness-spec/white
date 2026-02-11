@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Mail, MapPin, Clock, Send, Check } from 'lucide-react';
+import { useLanguage } from '../i18n';
 import { PageHero } from '../components/shared/PageHero';
 import { ContentSection } from '../components/shared/ContentSection';
 import { Button } from '../components/ui/button';
@@ -14,6 +15,7 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 export const ContactPage = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -39,7 +41,7 @@ export const ContactPage = () => {
       setIsSubmitted(true);
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (err) {
-      setError('Произошла ошибка при отправке. Попробуйте позже.');
+      setError(t('contact.formError'));
     } finally {
       setIsSubmitting(false);
     }
@@ -48,8 +50,8 @@ export const ContactPage = () => {
   return (
     <div data-testid="contact-page">
       <PageHero 
-        title="Контакты"
-        subtitle="Свяжитесь с нами для вопросов, предложений или исправлений."
+        title={t('contact.title')}
+        subtitle={t('contact.subtitle')}
         image={HERO_IMAGE}
         compact
       />
@@ -59,10 +61,10 @@ export const ContactPage = () => {
           {/* Contact Info */}
           <div className="lg:col-span-4">
             <span className="inline-block font-mono text-xs uppercase tracking-widest text-italia-green mb-4">
-              Информация
+              {t('contact.infoSubtitle')}
             </span>
             <h2 className="font-serif text-3xl font-medium text-italia-text mb-8">
-              Как с нами связаться
+              {t('contact.infoTitle')}
             </h2>
 
             <div className="space-y-6">
@@ -71,8 +73,8 @@ export const ContactPage = () => {
                   <Mail className="w-5 h-5 text-italia-green" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-italia-text mb-1">Email</h3>
-                  <p className="text-italia-text-muted">info@strade-italia.ru</p>
+                  <h3 className="font-medium text-italia-text mb-1">{t('contact.email')}</h3>
+                  <p className="text-italia-text-muted">info@strade-italia.it</p>
                 </div>
               </div>
 
@@ -81,8 +83,8 @@ export const ContactPage = () => {
                   <MapPin className="w-5 h-5 text-italia-green" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-italia-text mb-1">Локация</h3>
-                  <p className="text-italia-text-muted">Информационный портал</p>
+                  <h3 className="font-medium text-italia-text mb-1">{t('contact.location')}</h3>
+                  <p className="text-italia-text-muted">{t('contact.locationValue')}</p>
                 </div>
               </div>
 
@@ -91,16 +93,15 @@ export const ContactPage = () => {
                   <Clock className="w-5 h-5 text-italia-green" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-italia-text mb-1">Время ответа</h3>
-                  <p className="text-italia-text-muted">Обычно в течение 24-48 часов</p>
+                  <h3 className="font-medium text-italia-text mb-1">{t('contact.responseTime')}</h3>
+                  <p className="text-italia-text-muted">{t('contact.responseTimeValue')}</p>
                 </div>
               </div>
             </div>
 
             <div className="mt-8 p-6 bg-italia-gold/10 border-l-4 border-italia-gold">
               <p className="text-italia-text text-sm">
-                <strong>Обратите внимание:</strong> Мы информационный портал и не можем 
-                помочь с бронированием, оплатой штрафов или оформлением документов.
+                <strong>Nota:</strong> {t('contact.note')}
               </p>
             </div>
           </div>
@@ -114,44 +115,44 @@ export const ContactPage = () => {
                     <Check className="w-8 h-8 text-italia-green" />
                   </div>
                   <h3 className="font-serif text-2xl font-medium text-italia-text mb-4">
-                    Сообщение отправлено!
+                    {t('contact.formSuccess')}
                   </h3>
                   <p className="text-italia-text-muted mb-8">
-                    Спасибо за обращение. Мы ответим вам в ближайшее время.
+                    {t('contact.formSuccessText')}
                   </p>
                   <Button 
                     onClick={() => setIsSubmitted(false)}
                     variant="outline"
                     className="border-italia-green text-italia-green hover:bg-italia-green hover:text-white"
                   >
-                    Отправить ещё сообщение
+                    {t('contact.formSuccessButton')}
                   </Button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6" data-testid="contact-form">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <Label htmlFor="name">Ваше имя</Label>
+                      <Label htmlFor="name">{t('contact.formName')}</Label>
                       <Input
                         id="name"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        placeholder="Иван Иванов"
+                        placeholder={t('contact.formNamePlaceholder')}
                         required
                         className="border-italia-border focus:border-italia-green focus:ring-italia-green"
                         data-testid="input-name"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email</Label>
+                      <Label htmlFor="email">{t('contact.formEmail')}</Label>
                       <Input
                         id="email"
                         name="email"
                         type="email"
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="email@example.com"
+                        placeholder={t('contact.formEmailPlaceholder')}
                         required
                         className="border-italia-border focus:border-italia-green focus:ring-italia-green"
                         data-testid="input-email"
@@ -160,13 +161,13 @@ export const ContactPage = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="subject">Тема</Label>
+                    <Label htmlFor="subject">{t('contact.formSubject')}</Label>
                     <Input
                       id="subject"
                       name="subject"
                       value={formData.subject}
                       onChange={handleChange}
-                      placeholder="О чём хотите написать?"
+                      placeholder={t('contact.formSubjectPlaceholder')}
                       required
                       className="border-italia-border focus:border-italia-green focus:ring-italia-green"
                       data-testid="input-subject"
@@ -174,13 +175,13 @@ export const ContactPage = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="message">Сообщение</Label>
+                    <Label htmlFor="message">{t('contact.formMessage')}</Label>
                     <Textarea
                       id="message"
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
-                      placeholder="Ваше сообщение..."
+                      placeholder={t('contact.formMessagePlaceholder')}
                       rows={6}
                       required
                       className="border-italia-border focus:border-italia-green focus:ring-italia-green resize-none"
@@ -201,11 +202,11 @@ export const ContactPage = () => {
                     data-testid="submit-btn"
                   >
                     {isSubmitting ? (
-                      'Отправка...'
+                      t('common.sending')
                     ) : (
                       <>
                         <Send className="w-4 h-4 mr-2" />
-                        Отправить сообщение
+                        {t('contact.formSubmit')}
                       </>
                     )}
                   </Button>

@@ -1,5 +1,6 @@
 import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../i18n';
 
 export const PageHero = ({ 
   title, 
@@ -8,6 +9,8 @@ export const PageHero = ({
   showBack = true,
   compact = false 
 }) => {
+  const { t } = useLanguage();
+
   return (
     <section 
       className={`relative ${compact ? 'h-[300px] md:h-[350px]' : 'h-[400px] md:h-[500px]'} overflow-hidden`}
@@ -32,7 +35,7 @@ export const PageHero = ({
             data-testid="back-link"
           >
             <ArrowLeft className="w-4 h-4" />
-            <span className="text-sm font-medium">На главную</span>
+            <span className="text-sm font-medium">{t('common.backHome')}</span>
           </Link>
         )}
         
