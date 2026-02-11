@@ -289,7 +289,7 @@ export const translations = {
       ztlSubtitle: 'Importante!',
       ztlText: 'ZTL (Zona Traffico Limitato) — sono zone a traffico limitato nei centri storici delle città italiane. L\'accesso senza permesso è sanzionato con una multa.',
       ztlCameraTitle: 'Come funziona il controllo',
-      ztlCameraText: 'Agli ingressi sono installate telecamere che registrano le targhe. La multa (80-100€ per ogni accesso) arriva per posta al proprietario dell\'auto — solitamente la società di noleggio, che la inoltra a te.',
+      ztlCameraText: 'Agli ingressi sono installate telecamere che registrano le targhe. La multa (80-100€ per ogni accesso) arriva per posta al proprietario dell\'auto.',
       ztlCitiesTitle: 'ZTL nelle principali città',
       tipsTitle: 'Consigli per il parcheggio',
       tipsSubtitle: 'Raccomandazioni',
