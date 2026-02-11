@@ -760,6 +760,12 @@ export const translations = {
     roadSigns: {
       title: 'Italian Road Signs',
       subtitle: 'Italian road signs are similar to European ones, but there are important differences.',
+      termsTitle: 'Useful terms on signs',
+      termsSubtitle: 'Vocabulary',
+      colorsTitle: 'Background colors',
+      colorsSubtitle: 'Background',
+      priorityTitle: 'Priority rules',
+      prioritySubtitle: 'Priority',
       prohibitionTitle: 'Prohibition signs',
       prohibitionDesc: 'Circular signs with red border',
       warningTitle: 'Warning signs',
