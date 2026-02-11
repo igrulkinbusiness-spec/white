@@ -564,6 +564,7 @@ export const translations = {
       scenicRoutesDesc: 'The most beautiful roads in Italy for unforgettable trips',
       carRentalDesc: 'How to rent a car and what you need to know',
       gasStationsDesc: 'Information about gas stations, prices and services',
+      emergencyDesc: 'Emergency numbers and roadside assistance',
       roadSignsDesc: 'Italian signs and their meanings',
       speedLimitsDesc: 'Speed limits on different roads',
       parkingDesc: 'Restricted traffic zones in cities',
