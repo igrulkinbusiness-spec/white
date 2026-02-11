@@ -2,66 +2,91 @@ import { Shield, AlertTriangle, Phone, FileText } from 'lucide-react';
 import { PageHero } from '../components/shared/PageHero';
 import { ContentSection } from '../components/shared/ContentSection';
 import { InfoCard } from '../components/shared/InfoCard';
+import { useLanguage } from '../i18n';
 
 const HERO_IMAGE = "https://images.unsplash.com/photo-1764709981173-7b8a7f149ee1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NjZ8MHwxfHNlYXJjaHw0fHxJdGFseSUyMHJvYWQlMjBzaWduJTIwdHJhZmZpYyUyMHZpbnRhZ2V8ZW58MHx8fHwxNzcwODA2ODI2fDA&ixlib=rb-4.1.0&q=85";
 
-const mainRules = [
-  {
-    title: 'Движение правостороннее',
-    description: 'Как и в России, в Италии правостороннее движение. Обгон осуществляется слева.',
-  },
-  {
-    title: 'Ближний свет фар обязателен',
-    description: 'Вне населённых пунктов ближний свет должен быть включён круглосуточно, в любую погоду.',
-  },
-  {
-    title: 'Ремни безопасности',
-    description: 'Обязательны для всех пассажиров. Дети до 150 см роста — в специальных креслах.',
-  },
-  {
-    title: 'Телефон за рулём',
-    description: 'Разрешена только гарнитура hands-free. Штраф от 165 до 660 евро.',
-  },
-  {
-    title: 'Алкоголь',
-    description: 'Допустимый уровень — 0.5 промилле. Для водителей со стажем до 3 лет — 0.0 промилле.',
-  },
-  {
-    title: 'Зимние шины',
-    description: 'С 15 ноября по 15 апреля обязательны на горных дорогах (знак «цепи обязательны»).',
-  },
-];
+const dataIT = {
+  mainRules: [
+    { title: 'Guida a destra', description: 'Come in molti paesi europei, in Italia si guida a destra. Il sorpasso si effettua a sinistra.' },
+    { title: 'Luci anabbaglianti obbligatorie', description: 'Fuori dai centri abitati le luci anabbaglianti devono essere accese 24 ore su 24, con qualsiasi tempo.' },
+    { title: 'Cinture di sicurezza', description: 'Obbligatorie per tutti i passeggeri. Bambini sotto i 150 cm — in seggiolini speciali.' },
+    { title: 'Telefono alla guida', description: 'Consentito solo con auricolare vivavoce. Multa da 165 a 660 euro.' },
+    { title: 'Alcol', description: 'Limite consentito — 0,5 per mille. Per neopatentati (meno di 3 anni) — 0,0 per mille.' },
+    { title: 'Pneumatici invernali', description: 'Dal 15 novembre al 15 aprile obbligatori sulle strade di montagna (cartello "catene obbligatorie").' },
+  ],
+  requiredDocuments: [
+    { name: 'Patente di guida', note: 'La patente italiana è valida, per stranieri serve la patente internazionale' },
+    { name: 'Passaporto', note: 'Documento d\'identità valido' },
+    { name: 'Assicurazione', note: 'Carta verde o polizza valida nell\'UE' },
+    { name: 'Documenti del veicolo', note: 'Libretto di circolazione del veicolo' },
+  ],
+  fines: [
+    { violation: 'Eccesso di velocità fino a 10 km/h', fine: '42-173€' },
+    { violation: 'Eccesso di velocità 10-40 km/h', fine: '173-695€' },
+    { violation: 'Eccesso di velocità oltre 40 km/h', fine: '543-2.171€ + sospensione patente' },
+    { violation: 'Passaggio con semaforo rosso', fine: '167-665€' },
+    { violation: 'Uso del telefono', fine: '165-660€' },
+    { violation: 'Cintura non allacciata', fine: '83-333€' },
+    { violation: 'Guida in stato di ebbrezza', fine: '543-6.000€ + arresto' },
+    { violation: 'Sosta vietata', fine: '42-173€' },
+  ],
+  equipment: [
+    'Giubbotto riflettente (per ogni passeggero)',
+    'Triangolo di emergenza',
+    'Lampadine di ricambio per i fari',
+    'Kit di pronto soccorso (consigliato)',
+  ],
+};
 
-const requiredDocuments = [
-  { name: 'Водительское удостоверение', note: 'Российские права действительны с нотариальным переводом или МВУ' },
-  { name: 'Паспорт', note: 'Загранпаспорт с действующей визой' },
-  { name: 'Страховка', note: 'Зелёная карта или полис, действующий в ЕС' },
-  { name: 'Документы на авто', note: 'Свидетельство о регистрации или договор аренды' },
-];
-
-const fines = [
-  { violation: 'Превышение скорости до 10 км/ч', fine: '42-173€' },
-  { violation: 'Превышение скорости 10-40 км/ч', fine: '173-695€' },
-  { violation: 'Превышение скорости более 40 км/ч', fine: '543-2.171€ + лишение прав' },
-  { violation: 'Проезд на красный свет', fine: '167-665€' },
-  { violation: 'Использование телефона', fine: '165-660€' },
-  { violation: 'Не пристёгнут ремень', fine: '83-333€' },
-  { violation: 'Вождение в нетрезвом виде', fine: '543-6.000€ + арест' },
-  { violation: 'Неправильная парковка', fine: '42-173€' },
-];
+const dataEN = {
+  mainRules: [
+    { title: 'Drive on the right', description: 'Like many European countries, Italy drives on the right. Overtaking is done on the left.' },
+    { title: 'Low beam lights required', description: 'Outside built-up areas, low beam lights must be on 24/7, in any weather.' },
+    { title: 'Seat belts', description: 'Mandatory for all passengers. Children under 150 cm — in special car seats.' },
+    { title: 'Phone while driving', description: 'Only hands-free headsets allowed. Fine from 165 to 660 euros.' },
+    { title: 'Alcohol', description: 'Permitted level — 0.5 per mille. For new drivers (less than 3 years) — 0.0 per mille.' },
+    { title: 'Winter tires', description: 'From November 15 to April 15, mandatory on mountain roads (sign "chains required").' },
+  ],
+  requiredDocuments: [
+    { name: 'Driver\'s license', note: 'National license valid, international driving permit recommended' },
+    { name: 'Passport', note: 'Valid ID document' },
+    { name: 'Insurance', note: 'Green card or EU-valid policy' },
+    { name: 'Vehicle documents', note: 'Vehicle registration certificate' },
+  ],
+  fines: [
+    { violation: 'Speeding up to 10 km/h', fine: '42-173€' },
+    { violation: 'Speeding 10-40 km/h', fine: '173-695€' },
+    { violation: 'Speeding over 40 km/h', fine: '543-2.171€ + license suspension' },
+    { violation: 'Running red light', fine: '167-665€' },
+    { violation: 'Using phone', fine: '165-660€' },
+    { violation: 'Seat belt not fastened', fine: '83-333€' },
+    { violation: 'Drunk driving', fine: '543-6.000€ + arrest' },
+    { violation: 'Illegal parking', fine: '42-173€' },
+  ],
+  equipment: [
+    'Reflective vest (for each passenger)',
+    'Warning triangle',
+    'Spare bulbs for headlights',
+    'First aid kit (recommended)',
+  ],
+};
 
 export const TrafficRulesPage = () => {
+  const { t, language } = useLanguage();
+  const data = language === 'en' ? dataEN : dataIT;
+
   return (
     <div data-testid="traffic-rules-page">
       <PageHero 
-        title="Правила дорожного движения"
-        subtitle="Основные правила ПДД Италии, которые должен знать каждый водитель."
+        title={t('trafficRules.title')}
+        subtitle={t('trafficRules.subtitle')}
         image={HERO_IMAGE}
       />
 
-      <ContentSection title="Основные правила" subtitle="ПДД Италии" id="rules">
+      <ContentSection title={t('trafficRules.mainRulesTitle')} subtitle={t('trafficRules.mainRulesSubtitle')} id="rules">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {mainRules.map((rule) => (
+          {data.mainRules.map((rule) => (
             <div 
               key={rule.title}
               className="bg-white border border-italia-border p-6 hover:border-italia-green transition-colors"
@@ -82,14 +107,14 @@ export const TrafficRulesPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
               <span className="inline-block font-mono text-xs uppercase tracking-widest text-italia-green mb-4">
-                Документы
+                {t('trafficRules.documentsSubtitle')}
               </span>
               <h2 className="font-serif text-3xl md:text-4xl font-medium text-italia-text mb-8">
-                Что должно быть в машине
+                {t('trafficRules.documentsTitle')}
               </h2>
               
               <div className="space-y-4">
-                {requiredDocuments.map((doc) => (
+                {data.requiredDocuments.map((doc) => (
                   <div key={doc.name} className="flex items-start gap-4 p-4 border-l-4 border-italia-green bg-italia-limestone/30">
                     <FileText className="w-5 h-5 text-italia-green mt-0.5 flex-shrink-0" />
                     <div>
@@ -102,22 +127,21 @@ export const TrafficRulesPage = () => {
             </div>
             
             <div>
-              <InfoCard icon={AlertTriangle} variant="warning" title="Обязательное оборудование" className="mb-6">
+              <InfoCard icon={AlertTriangle} variant="warning" title={t('trafficRules.equipmentTitle')} className="mb-6">
                 <ul className="space-y-2 mt-3">
-                  <li>• Светоотражающий жилет (для каждого пассажира)</li>
-                  <li>• Знак аварийной остановки</li>
-                  <li>• Запасные лампочки для фар</li>
-                  <li>• Аптечка (рекомендуется)</li>
+                  {data.equipment.map((item, index) => (
+                    <li key={index}>• {item}</li>
+                  ))}
                 </ul>
               </InfoCard>
               
-              <InfoCard icon={Phone} title="Экстренные номера">
+              <InfoCard icon={Phone} title={t('trafficRules.emergencyTitle')}>
                 <ul className="space-y-2 mt-3 font-mono">
-                  <li><strong>112</strong> — Единый номер экстренных служб</li>
-                  <li><strong>113</strong> — Полиция</li>
-                  <li><strong>115</strong> — Пожарная служба</li>
-                  <li><strong>118</strong> — Скорая помощь</li>
-                  <li><strong>116</strong> — Помощь на дороге (ACI)</li>
+                  <li><strong>112</strong> — {t('emergency.num112')}</li>
+                  <li><strong>113</strong> — {t('emergency.num113').split(' ')[0]}</li>
+                  <li><strong>115</strong> — {t('emergency.num115').split(' ')[0]}</li>
+                  <li><strong>118</strong> — {t('emergency.num118').split(' ')[0]}</li>
+                  <li><strong>116</strong> — {t('emergency.num116').split(' ')[0]}</li>
                 </ul>
               </InfoCard>
             </div>
@@ -125,22 +149,25 @@ export const TrafficRulesPage = () => {
         </div>
       </section>
 
-      <ContentSection title="Штрафы" subtitle="Наказания" id="fines">
+      <ContentSection title={t('trafficRules.finesTitle')} subtitle={t('trafficRules.finesSubtitle')} id="fines">
         <p className="text-lg text-italia-text-muted mb-8 max-w-3xl">
-          Итальянские штрафы одни из самых высоких в Европе. Оплата в течение 5 дней 
-          даёт скидку 30%. Неоплаченные штрафы отправляются по адресу прокатной компании.
+          {t('trafficRules.finesIntro')}
         </p>
         
         <div className="overflow-x-auto">
           <table className="w-full border-collapse">
             <thead>
               <tr className="border-b-2 border-italia-red">
-                <th className="text-left py-4 pr-4 font-mono text-xs uppercase tracking-wider text-italia-text-muted">Нарушение</th>
-                <th className="text-left py-4 font-mono text-xs uppercase tracking-wider text-italia-text-muted">Штраф</th>
+                <th className="text-left py-4 pr-4 font-mono text-xs uppercase tracking-wider text-italia-text-muted">
+                  {language === 'en' ? 'Violation' : 'Violazione'}
+                </th>
+                <th className="text-left py-4 font-mono text-xs uppercase tracking-wider text-italia-text-muted">
+                  {language === 'en' ? 'Fine' : 'Multa'}
+                </th>
               </tr>
             </thead>
             <tbody>
-              {fines.map((item, index) => (
+              {data.fines.map((item, index) => (
                 <tr key={item.violation} className={index % 2 === 0 ? 'bg-white' : 'bg-italia-limestone/50'}>
                   <td className="py-4 pr-4 text-italia-text">{item.violation}</td>
                   <td className="py-4 font-mono text-italia-red font-medium">{item.fine}</td>
@@ -155,16 +182,13 @@ export const TrafficRulesPage = () => {
         <div className="container mx-auto px-4 md:px-8 max-w-7xl">
           <div className="max-w-3xl">
             <span className="inline-block font-mono text-xs uppercase tracking-widest text-italia-gold mb-4">
-              Совет
+              {language === 'en' ? 'Tip' : 'Consiglio'}
             </span>
             <h2 className="font-serif text-3xl md:text-4xl font-medium text-white mb-6">
-              Фото- и видеофиксация
+              {t('trafficRules.cameraTitle')}
             </h2>
             <p className="text-lg text-white/90 leading-relaxed">
-              В Италии широко распространены камеры контроля скорости (Autovelox) и 
-              камеры фиксации проезда в зоны ZTL. Они могут быть стационарными или 
-              мобильными. Знаки предупреждения о камерах не всегда устанавливаются, 
-              поэтому рекомендуем использовать навигатор с базой камер.
+              {t('trafficRules.cameraText')}
             </p>
           </div>
         </div>
