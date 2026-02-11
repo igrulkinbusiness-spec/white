@@ -50,18 +50,18 @@ export const HomePage = () => {
       image: 'https://images.unsplash.com/photo-1648116119723-921f2e316e86?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MDV8MHwxfHNlYXJjaHwzfHxBbWFsZmklMjBjb2FzdCUyMHJvYWQlMjBkcml2ZSUyMHNjZW5pY3xlbnwwfHx8fDE3NzA4MDY4MjB8MA&ixlib=rb-4.1.0&q=85',
     },
     {
-      title: t('nav.carRental'),
-      description: t('home.carRentalDesc'),
-      icon: Car,
-      link: '/car-rental',
-      image: 'https://images.unsplash.com/photo-1767304082222-71b90060d2f1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NjZ8MHwxfHNlYXJjaHw0fHx2aW50YWdlJTIwRmlhdCUyMGNhciUyMEl0YWx5JTIwc3RyZWV0fGVufDB8fHx8MTc3MDgwNjgzMHww&ixlib=rb-4.1.0&q=85',
-    },
-    {
       title: t('nav.gasStations'),
       description: t('home.gasStationsDesc'),
       icon: Fuel,
       link: '/gas-stations',
       image: 'https://images.unsplash.com/photo-1760681557274-243f7fad99eb?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1ODh8MHwxfHNlYXJjaHwzfHxJdGFsaWFuJTIwd2luZGluZyUyMHJvYWQlMjBUdXNjYW55JTIwaGlsbHN8ZW58MHx8fHwxNzcwODA2ODEyfDA&ixlib=rb-4.1.0&q=85',
+    },
+    {
+      title: t('nav.emergency'),
+      description: t('home.emergencyDesc'),
+      icon: AlertTriangle,
+      link: '/emergency',
+      image: 'https://images.unsplash.com/photo-1767304082222-71b90060d2f1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NjZ8MHwxfHNlYXJjaHw0fHx2aW50YWdlJTIwRmlhdCUyMGNhciUyMEl0YWx5JTIwc3RyZWV0fGVufDB8fHx8MTc3MDgwNjgzMHww&ixlib=rb-4.1.0&q=85',
     },
   ];
 
