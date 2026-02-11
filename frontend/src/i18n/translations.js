@@ -371,8 +371,14 @@ export const translations = {
     tips: {
       title: 'Consigli Utili',
       subtitle: 'Raccomandazioni pratiche da viaggiatori esperti per un viaggio confortevole.',
+      practicalTitle: 'Consigli pratici',
+      practicalSubtitle: 'Raccomandazioni',
       categoriesTitle: 'Consigli per categoria',
       categoriesSubtitle: 'Raccomandazioni',
+      equipmentTitle: 'Equipaggiamento',
+      equipmentSubtitle: 'Attrezzatura',
+      mandatoryTitle: 'Obbligatorio in auto',
+      mainTipTitle: 'Consiglio principale',
       beforeTrip: 'Prima del viaggio',
       beforeTripList: [
         'Procurati la patente internazionale o la traduzione autenticata',
