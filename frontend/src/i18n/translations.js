@@ -868,8 +868,14 @@ export const translations = {
     tips: {
       title: 'Useful Tips',
       subtitle: 'Practical recommendations from experienced travelers for a comfortable trip.',
+      practicalTitle: 'Practical tips',
+      practicalSubtitle: 'Recommendations',
       categoriesTitle: 'Tips by category',
       categoriesSubtitle: 'Recommendations',
+      equipmentTitle: 'Equipment',
+      equipmentSubtitle: 'Gear',
+      mandatoryTitle: 'Mandatory in car',
+      mainTipTitle: 'Main tip',
       beforeTrip: 'Before the trip',
       beforeTripList: [
         'Get an international driving permit or certified translation',
