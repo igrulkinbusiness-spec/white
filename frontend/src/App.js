@@ -9,7 +9,6 @@ import { AutostradePage } from "./pages/AutostradePage";
 import { TollRoadsPage } from "./pages/TollRoadsPage";
 import { TrafficRulesPage } from "./pages/TrafficRulesPage";
 import { ScenicRoutesPage } from "./pages/ScenicRoutesPage";
-import { CarRentalPage } from "./pages/CarRentalPage";
 import { GasStationsPage } from "./pages/GasStationsPage";
 import { ParkingPage } from "./pages/ParkingPage";
 import { RoadSignsPage } from "./pages/RoadSignsPage";
@@ -31,7 +30,6 @@ function App() {
               <Route path="/toll-roads" element={<TollRoadsPage />} />
               <Route path="/traffic-rules" element={<TrafficRulesPage />} />
               <Route path="/scenic-routes" element={<ScenicRoutesPage />} />
-              <Route path="/car-rental" element={<CarRentalPage />} />
               <Route path="/gas-stations" element={<GasStationsPage />} />
               <Route path="/parking" element={<ParkingPage />} />
               <Route path="/road-signs" element={<RoadSignsPage />} />
