@@ -37,7 +37,6 @@ export const Header = () => {
       name: t('nav.services'), 
       children: [
         { name: t('nav.gasStations'), path: '/gas-stations' },
-        { name: t('nav.carRental'), path: '/car-rental' },
         { name: t('nav.emergency'), path: '/emergency' },
       ]
     },
