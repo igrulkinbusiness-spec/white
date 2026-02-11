@@ -263,6 +263,12 @@ export const translations = {
     roadSigns: {
       title: 'Segnali Stradali Italiani',
       subtitle: 'I segnali stradali italiani sono simili a quelli europei, ma ci sono importanti particolarità.',
+      termsTitle: 'Termini utili sui segnali',
+      termsSubtitle: 'Vocabolario',
+      colorsTitle: 'Colori degli sfoni',
+      colorsSubtitle: 'Sfondo',
+      priorityTitle: 'Regole di precedenza',
+      prioritySubtitle: 'Precedenza',
       prohibitionTitle: 'Segnali di divieto',
       prohibitionDesc: 'Segnali circolari con bordo rosso',
       warningTitle: 'Segnali di pericolo',
