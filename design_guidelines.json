@@ -1,0 +1,138 @@
+{
+  "brand_identity": {
+    "name": "Strade d'Italia",
+    "tagline": "The Modern Grand Tour Guide",
+    "tone": "Authoritative, Romantic, Essential",
+    "target_audience": "Russian-speaking tourists planning road trips in Italy",
+    "design_archetype": "Swiss Editorial meets Italian Dolce Vita"
+  },
+  "typography": {
+    "primary_font": "Playfair Display",
+    "secondary_font": "Inter",
+    "accent_font": "JetBrains Mono",
+    "scale": {
+      "h1": "text-5xl md:text-7xl font-serif font-medium tracking-tight leading-[1.1]",
+      "h2": "text-3xl md:text-5xl font-serif font-normal tracking-tight leading-tight",
+      "h3": "text-2xl md:text-3xl font-sans font-bold tracking-tight",
+      "body_lg": "text-lg md:text-xl font-sans leading-relaxed text-muted-foreground",
+      "body": "text-base font-sans leading-relaxed text-muted-foreground",
+      "caption": "text-xs font-mono uppercase tracking-widest text-muted-foreground/80"
+    }
+  },
+  "colors": {
+    "palette": {
+      "primary": "#1A4D2E",
+      "primary_foreground": "#FFFFFF",
+      "secondary": "#C83E31",
+      "secondary_foreground": "#FFFFFF",
+      "background": "#F2F0E9",
+      "foreground": "#1C1C1C",
+      "muted": "#E6E4DD",
+      "muted_foreground": "#5C5C5C",
+      "accent": "#E6B325",
+      "accent_foreground": "#1C1C1C",
+      "border": "#D1CEC7"
+    },
+    "usage": {
+      "background": "bg-[#F2F0E9]",
+      "text_primary": "text-[#1C1C1C]",
+      "text_muted": "text-[#5C5C5C]",
+      "brand_green": "text-[#1A4D2E] or bg-[#1A4D2E]",
+      "brand_red": "text-[#C83E31] or bg-[#C83E31]",
+      "brand_gold": "text-[#E6B325] or bg-[#E6B325]"
+    }
+  },
+  "layout_strategy": {
+    "container": "container mx-auto px-4 md:px-8 max-w-7xl",
+    "grid_system": "grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8",
+    "section_spacing": "py-16 md:py-24",
+    "modes": {
+      "editorial": "Single column text (col-span-8 col-start-3) with breakout images (col-span-full)",
+      "bento": "Asymmetrical grid for galleries (mix of col-span-4, col-span-6, col-span-8)",
+      "dashboard": "Dense grid for data tables (tolls, distances) - use col-span-3 or col-span-4"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-[#1A4D2E] text-white hover:bg-[#143B23] rounded-full px-8 py-6 text-lg transition-all duration-300 hover:scale-[1.02]",
+      "secondary": "border border-[#1A4D2E] text-[#1A4D2E] bg-transparent hover:bg-[#1A4D2E]/5 rounded-full px-6 py-4 transition-all"
+    },
+    "cards": {
+      "style": "bg-white border border-[#D1CEC7] p-6 md:p-8 rounded-none shadow-none hover:shadow-lg transition-all duration-300 group",
+      "image_card": "relative overflow-hidden aspect-[4/3] group-hover:shadow-xl transition-all"
+    },
+    "navigation": {
+      "style": "sticky top-0 z-50 bg-[#F2F0E9]/80 backdrop-blur-md border-b border-[#D1CEC7]/50"
+    }
+  },
+  "visual_enhancers": {
+    "radius": "rounded-sm",
+    "shadows": "shadow-[0_4px_20px_-4px_rgba(26,77,46,0.1)]",
+    "glass": "backdrop-blur-xl bg-white/40 border border-white/20",
+    "textures": "Add subtle grain overlay to the main background for 'paper' feel",
+    "animations": {
+      "hover": "transition-transform duration-300 ease-out hover:-translate-y-1",
+      "fade_in": "animate-in fade-in duration-700 slide-in-from-bottom-4"
+    }
+  },
+  "images": {
+    "hero_main": {
+      "url": "https://images.unsplash.com/photo-1761995912965-8f134652fc6e",
+      "alt": "Tuscany winding road at sunset",
+      "usage": "Homepage Hero"
+    },
+    "scenic_route": {
+      "url": "https://images.unsplash.com/photo-1766333683189-cf188c04bdce",
+      "alt": "Green Italian Alps hillside",
+      "usage": "Scenic Routes Section"
+    },
+    "toll_booth": {
+      "url": "https://images.unsplash.com/photo-1753155449963-e1552ee7112a",
+      "alt": "Car approaching Italian toll booth",
+      "usage": "Tolls & Payment Page"
+    },
+    "gas_station": {
+      "url": "https://images.unsplash.com/photo-1696593891504-ee143ab562fc",
+      "alt": "Highway service station with mountains",
+      "usage": "Gas Stations & Services Page"
+    },
+    "police": {
+      "url": "https://images.unsplash.com/photo-1695866648629-8943afc459df",
+      "alt": "Italian Police Car",
+      "usage": "Emergency & Rules Page"
+    },
+    "car_rental": {
+      "url": "https://images.unsplash.com/photo-1767304082222-71b90060d2f1",
+      "alt": "Vintage Fiat 500 rental",
+      "usage": "Car Rental Information"
+    },
+    "signs_winding": {
+      "url": "https://images.unsplash.com/photo-1763992314997-bc43bb47cd33",
+      "alt": "Winding road sign",
+      "usage": "Road Signs Section"
+    }
+  },
+  "pages_structure": {
+    "home": "Hero (Tuscany), Quick Links Grid (Tolls, Rules, Routes), Featured Scenic Drive",
+    "autostrade": "Map visualization (static or interactive), Toll Calculator Component, Rules List",
+    "scenic": "Masonry Gallery of routes, Itinerary Cards",
+    "rules": "Icon-heavy grid (Speed limits, ZTL, Signs)",
+    "services": "Split layout: Gas Stations vs Rest Stops info"
+  },
+  "instructions_to_main_agent": [
+    "Use the custom color palette defined above. Override Tailwind config immediately.",
+    "Install 'Playfair Display' and 'JetBrains Mono' via Google Fonts.",
+    "Do NOT use standard Shadcn cards. Build custom 'Swiss Style' cards with minimal borders and generous padding.",
+    "Ensure all text has high contrast (APCA compliant). The Green #1A4D2E is safe on White/Limestone.",
+    "Use the 'Bento' grid for the homepage navigation links.",
+    "Implement a 'Grain' texture overlay on the body background.",
+    "For the 'Toll Calculator', use a clean form layout with the Accent Gold #E6B325 for the 'Calculate' button."
+  ],
+  "universal_guidelines": [
+    "Don't make generic centered layouts.",
+    "Use 2-3x more spacing than feels comfortable.",
+    "Every interaction needs micro-animations.",
+    "Use glass-morphism effects with backdrop filters.",
+    "NEVER use AI assistant Emoji characters."
+  ]
+}
