@@ -17,7 +17,7 @@ export const Header = () => {
   const navItems = [
     { name: t('nav.home'), path: '/' },
     { 
-      name: 'Roads', 
+      name: language === 'ga' ? 'Bóithre' : 'Roads', 
       children: [
         { name: t('nav.motorways'), path: '/motorways' },
         { name: t('nav.tollRoads'), path: '/toll-roads' },
@@ -25,7 +25,7 @@ export const Header = () => {
       ]
     },
     { 
-      name: 'Rules', 
+      name: language === 'ga' ? 'Rialacha' : 'Rules', 
       children: [
         { name: t('nav.trafficRules'), path: '/traffic-rules' },
         { name: t('nav.roadSigns'), path: '/road-signs' },
@@ -34,7 +34,7 @@ export const Header = () => {
       ]
     },
     { 
-      name: 'Services', 
+      name: language === 'ga' ? 'Seirbhísí' : 'Services', 
       children: [
         { name: t('nav.gasStations'), path: '/petrol-stations' },
         { name: t('nav.emergency'), path: '/emergency' },
