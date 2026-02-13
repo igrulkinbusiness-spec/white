@@ -101,7 +101,7 @@ export const ContactPage = () => {
 
             <div className="mt-8 p-6 bg-italia-gold/10 border-l-4 border-italia-gold">
               <p className="text-italia-text text-sm">
-                <strong>Nota:</strong> {t('contact.note')}
+                <strong>{language === 'ga' ? 'Nóta:' : 'Note:'}</strong> {t('contact.note')}
               </p>
             </div>
           </div>
