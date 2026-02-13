@@ -74,7 +74,7 @@ export const ContactPage = () => {
                 </div>
                 <div>
                   <h3 className="font-medium text-italia-text mb-1">{t('contact.email')}</h3>
-                  <p className="text-italia-text-muted">info@strade-italia.it</p>
+                  <p className="text-italia-text-muted">info@roadsofireland.ie</p>
                 </div>
               </div>
 
