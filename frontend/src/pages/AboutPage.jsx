@@ -1,67 +1,67 @@
-import { Info, Heart, MapPin, Mail } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { useLanguage } from '../i18n';
+import { Users, Target, BookOpen, Globe } from 'lucide-react';
 import { PageHero } from '../components/shared/PageHero';
 import { ContentSection } from '../components/shared/ContentSection';
+import { useLanguage } from '../i18n';
 
-const HERO_IMAGE = "https://images.unsplash.com/photo-1630413933714-a36e3aa156b9?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzl8MHwxfHNlYXJjaHwzfHxSb21lJTIwQ29sb3NzZXVtJTIwY2l0eSUyMHBhcmtpbmd8ZW58MHx8fHwxNzcwODA2ODM1fDA&ixlib=rb-4.1.0&q=85";
+const HERO_IMAGE = "https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzl8MHwxfHNlYXJjaHwxfHxJcmVsYW5kJTIwY291bnRyeXNpZGUlMjByb2FkfGVufDB8fHx8MTc3MDgwNjgxMnww&ixlib=rb-4.1.0&q=85";
+
+const topics = [
+  { title: 'Motorways', desc: 'M1, M50, M4 and Ireland\'s motorway network' },
+  { title: 'Toll Roads', desc: 'eFlow, M50 toll, and payment methods' },
+  { title: 'Traffic Rules', desc: 'Drive on the left, speed limits, and regulations' },
+  { title: 'Scenic Routes', desc: 'Wild Atlantic Way, Ring of Kerry, and more' },
+  { title: 'Petrol Stations', desc: 'Fuel prices, chains, and locations' },
+  { title: 'Parking', desc: 'Pay & display, disc parking, and clamping' },
+  { title: 'Road Signs', desc: 'Bilingual signs in English and Irish' },
+  { title: 'Emergency', desc: '999, Gardaí, and roadside assistance' },
+  { title: 'Tips', desc: 'Practical advice for driving in Ireland' },
+];
 
 export const AboutPage = () => {
   const { t } = useLanguage();
 
-  const topics = [
-    { title: t('nav.autostrade'), desc: t('home.autostradeDesc') },
-    { title: t('nav.tollRoads'), desc: t('home.tollRoadsDesc') },
-    { title: t('nav.trafficRules'), desc: t('home.trafficRulesDesc') },
-    { title: t('nav.scenicRoutes'), desc: t('home.scenicRoutesDesc') },
-    { title: t('nav.gasStations'), desc: t('home.gasStationsDesc') },
-    { title: t('nav.ztl'), desc: t('home.parkingDesc') },
-    { title: t('nav.roadSigns'), desc: t('home.roadSignsDesc') },
-    { title: t('nav.emergency'), desc: t('home.emergencyDesc') },
-    { title: t('nav.tips'), desc: t('home.tipsDesc') },
-  ];
-
   return (
     <div data-testid="about-page">
       <PageHero 
-        title={t('about.title')}
-        subtitle={t('about.subtitle')}
+        title="About Us"
+        subtitle="Roads of Ireland - your trusted guide to driving in Ireland."
         image={HERO_IMAGE}
       />
 
-      <ContentSection title={t('about.missionTitle')} subtitle={t('about.missionSubtitle')} id="mission">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-7">
-            <div className="prose prose-lg max-w-none text-italia-text-muted">
-              <p className="text-lg md:text-xl leading-relaxed mb-6">
-                <strong className="text-italia-text">Strade d'Italia</strong> — {t('about.missionText1')}
-              </p>
-              <p className="leading-relaxed mb-6">
-                {t('about.missionText2')}
-              </p>
-              <p className="leading-relaxed mb-6">
-                {t('about.missionText3')}
-              </p>
-            </div>
+      <ContentSection title="Our Mission" subtitle="Why We Exist" id="mission">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <p className="text-lg text-italia-text-muted leading-relaxed mb-6">
+              We created Roads of Ireland to help visitors and new residents navigate Irish roads with confidence. 
+              Whether you're planning a road trip along the Wild Atlantic Way or simply need to know how to pay 
+              the M50 toll, we've got you covered.
+            </p>
+            <p className="text-lg text-italia-text-muted leading-relaxed">
+              Driving in Ireland can be challenging - narrow winding roads, driving on the left, 
+              unique road signs in both English and Irish, and unpredictable weather. Our goal is to 
+              prepare you for everything so you can relax and enjoy one of Europe's most beautiful countries.
+            </p>
           </div>
-          <div className="lg:col-span-5 space-y-6">
-            <div className="p-6 bg-white border-l-4 border-italia-green">
-              <Info className="w-8 h-8 text-italia-green mb-4" />
-              <h3 className="font-serif text-xl font-medium text-italia-text mb-2">
-                {t('about.infoResourceTitle')}
-              </h3>
-              <p className="text-italia-text-muted">
-                {t('about.infoResourceText')}
-              </p>
+          <div className="grid grid-cols-2 gap-6">
+            <div className="p-6 bg-italia-limestone border border-italia-border text-center">
+              <Target className="w-10 h-10 text-italia-green mx-auto mb-4" />
+              <h3 className="font-serif text-lg font-medium text-italia-text">Accurate</h3>
+              <p className="text-sm text-italia-text-muted mt-2">Up-to-date, verified information</p>
             </div>
-            <div className="p-6 bg-white border-l-4 border-italia-gold">
-              <Heart className="w-8 h-8 text-italia-gold mb-4" />
-              <h3 className="font-serif text-xl font-medium text-italia-text mb-2">
-                {t('about.madeWithLoveTitle')}
-              </h3>
-              <p className="text-italia-text-muted">
-                {t('about.madeWithLoveText')}
-              </p>
+            <div className="p-6 bg-italia-limestone border border-italia-border text-center">
+              <BookOpen className="w-10 h-10 text-italia-green mx-auto mb-4" />
+              <h3 className="font-serif text-lg font-medium text-italia-text">Comprehensive</h3>
+              <p className="text-sm text-italia-text-muted mt-2">Everything you need to know</p>
+            </div>
+            <div className="p-6 bg-italia-limestone border border-italia-border text-center">
+              <Users className="w-10 h-10 text-italia-green mx-auto mb-4" />
+              <h3 className="font-serif text-lg font-medium text-italia-text">Helpful</h3>
+              <p className="text-sm text-italia-text-muted mt-2">Written for real travellers</p>
+            </div>
+            <div className="p-6 bg-italia-limestone border border-italia-border text-center">
+              <Globe className="w-10 h-10 text-italia-green mx-auto mb-4" />
+              <h3 className="font-serif text-lg font-medium text-italia-text">Bilingual</h3>
+              <p className="text-sm text-italia-text-muted mt-2">English and Irish (Gaeilge)</p>
             </div>
           </div>
         </div>
@@ -71,41 +71,36 @@ export const AboutPage = () => {
         <div className="container mx-auto px-4 md:px-8 max-w-7xl">
           <div className="mb-12">
             <span className="inline-block font-mono text-xs uppercase tracking-widest text-italia-green mb-4">
-              {t('about.contentSubtitle')}
+              What We Cover
             </span>
             <h2 className="font-serif text-3xl md:text-4xl font-medium text-italia-text">
-              {t('about.contentTitle')}
+              Topics
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {topics.map((item) => (
-              <div key={item.title} className="p-6 border border-italia-border hover:border-italia-green transition-colors">
-                <h3 className="font-serif text-lg font-medium text-italia-text mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-italia-text-muted">{item.desc}</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {topics.map((topic) => (
+              <div key={topic.title} className="p-6 border border-italia-border hover:border-italia-green transition-colors">
+                <h3 className="font-serif text-lg font-medium text-italia-text mb-2">{topic.title}</h3>
+                <p className="text-sm text-italia-text-muted">{topic.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-italia-green" data-testid="cta-section">
-        <div className="container mx-auto px-4 md:px-8 max-w-7xl text-center">
-          <Mail className="w-12 h-12 text-italia-gold mx-auto mb-6" />
-          <h2 className="font-serif text-3xl md:text-4xl font-medium text-white mb-4">
-            {t('about.contactCta')}
-          </h2>
-          <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
-            {t('about.contactCtaText')}
+      <section className="py-16 bg-italia-green" data-testid="disclaimer-section">
+        <div className="container mx-auto px-4 md:px-8 max-w-7xl">
+          <h2 className="font-serif text-3xl font-medium text-white mb-6">Disclaimer</h2>
+          <p className="text-white/90 mb-4">
+            Roads of Ireland is an independent informational website. We are not affiliated with, 
+            endorsed by, or connected to any government agency, tourism board, or official body.
           </p>
-          <Link 
-            to="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-italia-green font-medium rounded-full hover:bg-italia-limestone transition-all"
-          >
-            {t('about.contactCtaButton')}
-          </Link>
+          <p className="text-white/80 text-sm">
+            While we strive to keep information accurate and up-to-date, road rules, toll prices, 
+            and other details may change. Always check official sources and signage. 
+            Drive safely and enjoy Ireland!
+          </p>
         </div>
       </section>
     </div>
