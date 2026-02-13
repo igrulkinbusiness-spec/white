@@ -41,7 +41,7 @@ export const PageHero = ({
         
         <div className="max-w-3xl">
           <span className="inline-block font-mono text-xs uppercase tracking-widest text-italia-gold mb-4">
-            Strade d'Italia
+            Roads of Ireland
           </span>
           <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-medium text-white leading-tight mb-4">
             {title}
