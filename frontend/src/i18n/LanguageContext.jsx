@@ -6,7 +6,7 @@ const LanguageContext = createContext();
 export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState(() => {
     const saved = localStorage.getItem('language');
-    return saved || 'it';
+    return saved || 'en';
   });
 
   useEffect(() => {
@@ -22,7 +22,16 @@ export const LanguageProvider = ({ children }) => {
       if (value && typeof value === 'object') {
         value = value[key];
       } else {
-        return path;
+        // Fallback to English
+        let fallback = translations['en'];
+        for (const k of keys) {
+          if (fallback && typeof fallback === 'object') {
+            fallback = fallback[k];
+          } else {
+            return path;
+          }
+        }
+        return fallback || path;
       }
     }
     
@@ -30,7 +39,7 @@ export const LanguageProvider = ({ children }) => {
   };
 
   const toggleLanguage = () => {
-    setLanguage(prev => prev === 'it' ? 'en' : 'it');
+    setLanguage(prev => prev === 'en' ? 'ga' : 'en');
   };
 
   return (
