@@ -9,7 +9,7 @@ export const Footer = () => {
     {
       title: t('footer.roads'),
       links: [
-        { name: t('nav.autostrade'), path: '/autostrade' },
+        { name: t('nav.motorways'), path: '/motorways' },
         { name: t('nav.tollRoads'), path: '/toll-roads' },
         { name: t('nav.scenicRoutes'), path: '/scenic-routes' },
       ]
@@ -26,7 +26,7 @@ export const Footer = () => {
     {
       title: t('footer.useful'),
       links: [
-        { name: t('nav.gasStations'), path: '/gas-stations' },
+        { name: t('nav.gasStations'), path: '/petrol-stations' },
         { name: t('nav.emergency'), path: '/emergency' },
         { name: t('nav.tips'), path: '/tips' },
       ]
@@ -42,12 +42,12 @@ export const Footer = () => {
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 bg-white rounded-sm flex items-center justify-center">
-                <span className="text-italia-green font-serif font-bold text-2xl">S</span>
+                <span className="text-italia-green font-serif font-bold text-2xl">R</span>
               </div>
               <div>
-                <h2 className="font-serif text-2xl font-medium">Strade d'Italia</h2>
+                <h2 className="font-serif text-2xl font-medium">Roads of Ireland</h2>
                 <p className="text-sm text-white/70 font-mono uppercase tracking-wider">
-                  {t('common.brandTagline')}
+                  {t('header.tagline')}
                 </p>
               </div>
             </div>
@@ -57,15 +57,15 @@ export const Footer = () => {
             <div className="space-y-3 text-sm text-white/70">
               <div className="flex items-center gap-3">
                 <MapPin className="w-4 h-4" />
-                <span>{t('footer.infoPortal')}</span>
+                <span>Informational Portal</span>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="w-4 h-4" />
-                <span>info@strade-italia.it</span>
+                <span>info@roadsofireland.ie</span>
               </div>
               <div className="flex items-center gap-3">
                 <Clock className="w-4 h-4" />
-                <span>{t('footer.updated')}</span>
+                <span>Updated 2025</span>
               </div>
             </div>
           </div>
