@@ -1,78 +1,52 @@
-import { Gauge, AlertTriangle, Cloud, Moon } from 'lucide-react';
+import { Gauge, AlertTriangle, Cloud, Moon, Camera } from 'lucide-react';
 import { PageHero } from '../components/shared/PageHero';
 import { ContentSection } from '../components/shared/ContentSection';
 import { InfoCard } from '../components/shared/InfoCard';
 import { useLanguage } from '../i18n';
 
-const HERO_IMAGE = "https://images.unsplash.com/photo-1764709981956-06d81a015a14?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NjZ8MHwxfHNlYXJjaHwyfHxJdGFseSUyMHJvYWQlMjBzaWduJTIwdHJhZmZpYyUyMHZpbnRhZ2V8ZW58MHx8fHwxNzcwODA2ODI2fDA&ixlib=rb-4.1.0&q=85";
+const HERO_IMAGE = "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzl8MHwxfHNlYXJjaHwxfHxzcGVlZCUyMGxpbWl0JTIwc2lnbiUyMElyZWxhbmR8ZW58MHx8fHwxNzcwODA2ODEyfDA&ixlib=rb-4.1.0&q=85";
 
-const dataIT = {
-  speedLimits: [
-    { type: 'Centri abitati', limit: '50 km/h', icon: '🏘️', note: 'In alcune zone (scuole, vie pedonali) — 30 km/h' },
-    { type: 'Strade extraurbane', limit: '90 km/h', icon: '🛤️', note: 'Strade a corsia unica fuori dai centri abitati' },
-    { type: 'Superstrade', limit: '110 km/h', icon: '🚗', note: 'Strade con spartitraffico, ma non autostrade' },
-    { type: 'Autostrade', limit: '130 km/h', icon: '🛣️', note: 'Autostrade a pagamento' },
-  ],
-  specialConditions: [
-    { condition: 'Pioggia, neve, nebbia', reduction: '-20 km/h', note: 'In autostrada — 110 km/h invece di 130 km/h', icon: Cloud },
-    { condition: 'Di notte', reduction: 'Invariato', note: 'Limiti uguali, ma si consiglia di rallentare', icon: Moon },
-    { condition: 'Neopatentati (meno di 3 anni)', reduction: 'Limiti speciali', note: 'Max 100 km/h in autostrada, 90 km/h in superstrada', icon: AlertTriangle },
-  ],
-  finesTable: [
-    { excess: 'Fino a 10 km/h', fine: '42-173€', points: '0' },
-    { excess: '10-40 km/h', fine: '173-695€', points: '3' },
-    { excess: '40-60 km/h', fine: '543-2.171€', points: '6' },
-    { excess: 'Oltre 60 km/h', fine: '845-3.382€', points: '10' },
-  ],
-  cameraTypes: [
-    { name: 'Autovelox', description: 'Misuratori di velocità fissi. Segnalati in anticipo.' },
-    { name: 'Tutor (SICVe)', description: 'Sistema che calcola la velocità media su un tratto.' },
-    { name: 'Velobox', description: 'Contenitori che possono essere vuoti o con autovelox.' },
-    { name: 'Controllo mobile', description: 'Pattuglie con misuratori portatili.' },
-  ],
-};
+const speedLimits = [
+  { type: 'Motorways', limit: '120 km/h', icon: '🛣️', note: 'M-roads only. Minimum speed 50 km/h.' },
+  { type: 'National Roads', limit: '100 km/h', icon: '🛤️', note: 'N-roads (single or dual carriageway)' },
+  { type: 'Regional/Local Roads', limit: '80 km/h', icon: '🚗', note: 'R and L roads. Often lower in reality due to conditions.' },
+  { type: 'Built-up Areas', limit: '50 km/h', icon: '🏘️', note: 'Default in towns/cities. Watch for 30 km/h zones.' },
+];
 
-const dataEN = {
-  speedLimits: [
-    { type: 'Urban areas', limit: '50 km/h', icon: '🏘️', note: 'In some zones (schools, pedestrian streets) — 30 km/h' },
-    { type: 'Rural roads', limit: '90 km/h', icon: '🛤️', note: 'Single-lane roads outside built-up areas' },
-    { type: 'Expressways (Superstrada)', limit: '110 km/h', icon: '🚗', note: 'Roads with dividers, but not highways' },
-    { type: 'Highways (Autostrada)', limit: '130 km/h', icon: '🛣️', note: 'Toll motorways' },
-  ],
-  specialConditions: [
-    { condition: 'Rain, snow, fog', reduction: '-20 km/h', note: 'On highways — 110 km/h instead of 130 km/h', icon: Cloud },
-    { condition: 'At night', reduction: 'Unchanged', note: 'Same limits, but reducing speed is recommended', icon: Moon },
-    { condition: 'New drivers (less than 3 years)', reduction: 'Special limits', note: 'Max 100 km/h on highways, 90 km/h on expressways', icon: AlertTriangle },
-  ],
-  finesTable: [
-    { excess: 'Up to 10 km/h', fine: '€42-173', points: '0' },
-    { excess: '10-40 km/h', fine: '€173-695', points: '3' },
-    { excess: '40-60 km/h', fine: '€543-2,171', points: '6' },
-    { excess: 'Over 60 km/h', fine: '€845-3,382', points: '10' },
-  ],
-  cameraTypes: [
-    { name: 'Autovelox', description: 'Fixed speed cameras. Signposted in advance.' },
-    { name: 'Tutor (SICVe)', description: 'System that calculates average speed over a distance.' },
-    { name: 'Velobox', description: 'Boxes that may be empty or contain speed cameras.' },
-    { name: 'Mobile control', description: 'Police patrols with portable speed guns.' },
-  ],
-};
+const specialZones = [
+  { zone: 'School Zones', limit: '30 km/h', time: 'During school hours' },
+  { zone: 'Residential Estates', limit: '30 km/h', time: 'Often marked at entrance' },
+  { zone: 'City Centres', limit: '30 km/h', time: 'Dublin, Cork, Galway centres' },
+  { zone: 'Near Schools/Churches', limit: '30-50 km/h', time: 'Watch for signs' },
+];
+
+const finesTable = [
+  { excess: 'Up to 30 km/h over', fine: '€80', points: '3', court: 'No' },
+  { excess: '30+ km/h over', fine: 'Up to €5,000', points: '5', court: 'Yes' },
+  { excess: '50+ km/h over', fine: 'Up to €5,000', points: '6', court: 'Yes' },
+];
+
+const cameraInfo = [
+  { name: 'GoSafe Vans', description: 'White vans marked "Safety Camera". Mobile speed detection on all road types.' },
+  { name: 'Fixed Cameras', description: 'Yellow boxes, usually signposted. Common on motorways and N-roads.' },
+  { name: 'Average Speed Cameras', description: 'Some stretches measure average speed over distance. You can\'t speed between cameras!' },
+  { name: 'Garda Checkpoints', description: 'Police may conduct speed checks with handheld devices. Also check for drink driving.' },
+];
 
 export const SpeedLimitsPage = () => {
-  const { t, language } = useLanguage();
-  const data = language === 'en' ? dataEN : dataIT;
+  const { t } = useLanguage();
 
   return (
     <div data-testid="speed-limits-page">
       <PageHero 
-        title={t('speedLimits.title')}
-        subtitle={t('speedLimits.subtitle')}
+        title="Speed Limits"
+        subtitle="Speed limits in Ireland are in kilometres per hour (km/h). These are maximum limits - actual safe speed depends on conditions."
         image={HERO_IMAGE}
       />
 
-      <ContentSection title={t('speedLimits.standardTitle')} subtitle={t('speedLimits.standardSubtitle')} id="limits">
+      <ContentSection title="Standard Speed Limits" subtitle="By Road Type" id="limits">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {data.speedLimits.map((item) => (
+          {speedLimits.map((item) => (
             <div 
               key={item.type}
               className="bg-white border border-italia-border p-6 hover:border-italia-green transition-colors text-center"
@@ -88,56 +62,56 @@ export const SpeedLimitsPage = () => {
             </div>
           ))}
         </div>
+
+        <InfoCard icon={AlertTriangle} variant="warning" title="Important Note" className="mt-8">
+          <p className="mt-2">
+            These are MAXIMUM limits for ideal conditions. In rain, fog, or on narrow roads, you should drive slower. 
+            Many rural roads are physically impossible to drive at 80 km/h safely!
+          </p>
+        </InfoCard>
       </ContentSection>
 
-      <section className="py-16 bg-white" data-testid="conditions-section">
+      <section className="py-16 bg-white" data-testid="special-zones">
         <div className="container mx-auto px-4 md:px-8 max-w-7xl">
           <div className="mb-12">
             <span className="inline-block font-mono text-xs uppercase tracking-widest text-italia-green mb-4">
-              {t('speedLimits.conditionsSubtitle')}
+              Watch For
             </span>
             <h2 className="font-serif text-3xl md:text-4xl font-medium text-italia-text">
-              {t('speedLimits.conditionsTitle')}
+              Special Speed Zones
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {data.specialConditions.map((item) => (
-              <div key={item.condition} className="p-6 border-l-4 border-italia-gold">
-                <item.icon className="w-8 h-8 text-italia-gold mb-4" />
-                <h3 className="font-serif text-xl font-medium text-italia-text mb-2">
-                  {item.condition}
-                </h3>
-                <div className="font-mono text-lg text-italia-red mb-2">{item.reduction}</div>
-                <p className="text-sm text-italia-text-muted">{item.note}</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {specialZones.map((zone) => (
+              <div key={zone.zone} className="p-6 border-l-4 border-italia-gold bg-italia-limestone/30">
+                <h3 className="font-medium text-italia-text mb-2">{zone.zone}</h3>
+                <div className="font-mono text-2xl text-italia-red mb-2">{zone.limit}</div>
+                <p className="text-sm text-italia-text-muted">{zone.time}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <ContentSection title={t('speedLimits.finesTitle')} subtitle={t('speedLimits.finesSubtitle')} id="fines">
+      <ContentSection title="Speeding Penalties" subtitle="Fines & Points" id="fines">
         <div className="overflow-x-auto">
           <table className="w-full border-collapse">
             <thead>
               <tr className="border-b-2 border-italia-red">
-                <th className="text-left py-4 pr-4 font-mono text-xs uppercase tracking-wider text-italia-text-muted">
-                  {language === 'en' ? 'Excess' : 'Eccesso'}
-                </th>
-                <th className="text-left py-4 pr-4 font-mono text-xs uppercase tracking-wider text-italia-text-muted">
-                  {language === 'en' ? 'Fine' : 'Multa'}
-                </th>
-                <th className="text-left py-4 font-mono text-xs uppercase tracking-wider text-italia-text-muted">
-                  {language === 'en' ? 'Points' : 'Punti'}
-                </th>
+                <th className="text-left py-4 pr-4 font-mono text-xs uppercase tracking-wider text-italia-text-muted">Excess Speed</th>
+                <th className="text-left py-4 pr-4 font-mono text-xs uppercase tracking-wider text-italia-text-muted">Fine</th>
+                <th className="text-left py-4 pr-4 font-mono text-xs uppercase tracking-wider text-italia-text-muted">Points</th>
+                <th className="text-left py-4 font-mono text-xs uppercase tracking-wider text-italia-text-muted">Court?</th>
               </tr>
             </thead>
             <tbody>
-              {data.finesTable.map((row, index) => (
+              {finesTable.map((row, index) => (
                 <tr key={row.excess} className={index % 2 === 0 ? 'bg-white' : 'bg-italia-limestone/50'}>
                   <td className="py-4 pr-4 text-italia-text">{row.excess}</td>
                   <td className="py-4 pr-4 font-mono text-italia-red font-medium">{row.fine}</td>
-                  <td className="py-4 font-mono">{row.points}</td>
+                  <td className="py-4 pr-4 font-mono">{row.points}</td>
+                  <td className="py-4">{row.court}</td>
                 </tr>
               ))}
             </tbody>
@@ -146,7 +120,8 @@ export const SpeedLimitsPage = () => {
         
         <div className="mt-8 p-6 bg-italia-red/10 border-l-4 border-italia-red">
           <p className="text-italia-text">
-            <strong>{language === 'en' ? 'Important:' : 'Importante:'}</strong> {t('speedLimits.finesNote')}
+            <strong>Important:</strong> Pay fixed charge notices within 28 days. After 28 days, the fine increases by 50%. 
+            After 56 days, you may be summonsed to court.
           </p>
         </div>
       </ContentSection>
@@ -155,17 +130,18 @@ export const SpeedLimitsPage = () => {
         <div className="container mx-auto px-4 md:px-8 max-w-7xl">
           <div className="mb-12">
             <span className="inline-block font-mono text-xs uppercase tracking-widest text-italia-gold mb-4">
-              {t('speedLimits.camerasSubtitle')}
+              Enforcement
             </span>
             <h2 className="font-serif text-3xl md:text-4xl font-medium text-white">
-              {t('speedLimits.camerasTitle')}
+              Speed Cameras
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {data.cameraTypes.map((camera) => (
-              <div key={camera.name} className="p-6 bg-white/10 backdrop-blur">
-                <h3 className="font-serif text-xl font-medium text-white mb-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {cameraInfo.map((camera) => (
+              <div key={camera.name} className="p-6 bg-white/10 backdrop-blur rounded-lg">
+                <Camera className="w-8 h-8 text-italia-gold mb-3" />
+                <h3 className="font-serif text-xl font-medium text-white mb-2">
                   {camera.name}
                 </h3>
                 <p className="text-white/80 text-sm">{camera.description}</p>
