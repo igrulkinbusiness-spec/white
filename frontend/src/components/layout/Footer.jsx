@@ -3,7 +3,7 @@ import { MapPin, Mail, Clock } from 'lucide-react';
 import { useLanguage } from '../../i18n';
 
 export const Footer = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const footerLinks = [
     {
@@ -57,7 +57,7 @@ export const Footer = () => {
             <div className="space-y-3 text-sm text-white/70">
               <div className="flex items-center gap-3">
                 <MapPin className="w-4 h-4" />
-                <span>Informational Portal</span>
+                <span>{language === 'ga' ? 'Tairseach Faisnéise' : 'Informational Portal'}</span>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="w-4 h-4" />
@@ -65,7 +65,7 @@ export const Footer = () => {
               </div>
               <div className="flex items-center gap-3">
                 <Clock className="w-4 h-4" />
-                <span>Updated 2025</span>
+                <span>{language === 'ga' ? 'Nuashonraithe 2025' : 'Updated 2025'}</span>
               </div>
             </div>
           </div>
