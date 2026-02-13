@@ -14,7 +14,25 @@ const features = [
 ];
 
 export const HomePage = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+
+  const featureDescriptions = {
+    motorways: t('home.motorwaysDesc'),
+    tollRoads: t('home.tollRoadsDesc'),
+    trafficRules: t('home.trafficRulesDesc'),
+    scenicRoutes: t('home.scenicRoutesDesc'),
+    gasStations: t('home.gasStationsDesc'),
+    emergency: t('home.emergencyDesc'),
+  };
+
+  const featureNames = {
+    motorways: t('nav.motorways'),
+    tollRoads: t('nav.tollRoads'),
+    trafficRules: t('nav.trafficRules'),
+    scenicRoutes: t('nav.scenicRoutes'),
+    gasStations: t('nav.gasStations'),
+    emergency: t('nav.emergency'),
+  };
 
   return (
     <div data-testid="home-page">
@@ -83,10 +101,10 @@ export const HomePage = () => {
               >
                 <feature.icon className={`w-10 h-10 ${feature.color} mb-6`} />
                 <h3 className="font-serif text-xl font-medium text-italia-text mb-3 group-hover:text-italia-green transition-colors">
-                  {t(`nav.${feature.key === 'motorways' ? 'motorways' : feature.key === 'tollRoads' ? 'tollRoads' : feature.key === 'trafficRules' ? 'trafficRules' : feature.key === 'scenicRoutes' ? 'scenicRoutes' : feature.key === 'gasStations' ? 'gasStations' : 'emergency'}`)}
+                  {featureNames[feature.key]}
                 </h3>
                 <p className="text-italia-text-muted leading-relaxed">
-                  {t(`home.${feature.key}Desc`)}
+                  {featureDescriptions[feature.key]}
                 </p>
               </Link>
             ))}
@@ -100,17 +118,19 @@ export const HomePage = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="text-center md:text-left">
               <h3 className="font-serif text-2xl md:text-3xl font-medium text-white mb-2">
-                Drive on the Left!
+                {language === 'ga' ? 'Tiomáin ar Chlé!' : 'Drive on the Left!'}
               </h3>
               <p className="text-white/80">
-                Remember: Ireland drives on the left side of the road. Take extra care at junctions and roundabouts.
+                {language === 'ga' 
+                  ? 'Cuimhnigh: Tiomáineann Éire ar thaobh na láimhe clé den bhóthar. Bí an-chúramach ag acomhail agus timpeallán.'
+                  : 'Remember: Ireland drives on the left side of the road. Take extra care at junctions and roundabouts.'}
               </p>
             </div>
             <Link 
               to="/traffic-rules"
               className="px-8 py-4 bg-white text-italia-green font-medium rounded-full hover:bg-italia-limestone transition-colors"
             >
-              Learn the Rules
+              {language === 'ga' ? 'Foghlaim na Rialacha' : 'Learn the Rules'}
             </Link>
           </div>
         </div>
