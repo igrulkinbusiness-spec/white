@@ -17,15 +17,15 @@ export const Header = () => {
   const navItems = [
     { name: t('nav.home'), path: '/' },
     { 
-      name: t('nav.roads'), 
+      name: 'Roads', 
       children: [
-        { name: t('nav.autostrade'), path: '/autostrade' },
+        { name: t('nav.motorways'), path: '/motorways' },
         { name: t('nav.tollRoads'), path: '/toll-roads' },
         { name: t('nav.scenicRoutes'), path: '/scenic-routes' },
       ]
     },
     { 
-      name: t('nav.rules'), 
+      name: 'Rules', 
       children: [
         { name: t('nav.trafficRules'), path: '/traffic-rules' },
         { name: t('nav.roadSigns'), path: '/road-signs' },
@@ -34,9 +34,9 @@ export const Header = () => {
       ]
     },
     { 
-      name: t('nav.services'), 
+      name: 'Services', 
       children: [
-        { name: t('nav.gasStations'), path: '/gas-stations' },
+        { name: t('nav.gasStations'), path: '/petrol-stations' },
         { name: t('nav.emergency'), path: '/emergency' },
       ]
     },
@@ -53,14 +53,14 @@ export const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group" data-testid="logo-link">
             <div className="w-10 h-10 bg-italia-green rounded-sm flex items-center justify-center">
-              <span className="text-white font-serif font-bold text-xl">S</span>
+              <span className="text-white font-serif font-bold text-xl">R</span>
             </div>
             <div className="hidden sm:block">
               <h1 className="font-serif text-xl font-medium text-italia-text group-hover:text-italia-green transition-colors">
-                Strade d'Italia
+                Roads of Ireland
               </h1>
               <p className="text-xs text-italia-text-muted font-mono uppercase tracking-wider">
-                {t('common.brandTagline')}
+                {t('header.tagline')}
               </p>
             </div>
           </Link>
@@ -107,12 +107,12 @@ export const Header = () => {
           <div className="hidden lg:flex items-center gap-3">
             {/* Language Switcher */}
             <button
-              onClick={() => setLanguage(language === 'it' ? 'en' : 'it')}
+              onClick={() => setLanguage(language === 'en' ? 'ga' : 'en')}
               className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-italia-text hover:text-italia-green transition-colors border border-italia-border rounded-full hover:border-italia-green"
               data-testid="language-switcher"
             >
               <Globe className="w-4 h-4" />
-              <span className="uppercase">{language === 'it' ? 'EN' : 'IT'}</span>
+              <span className="uppercase">{language === 'en' ? 'GA' : 'EN'}</span>
             </button>
 
             <Link 
@@ -127,7 +127,7 @@ export const Header = () => {
           {/* Mobile Menu Button */}
           <div className="lg:hidden flex items-center gap-2">
             <button
-              onClick={() => setLanguage(language === 'it' ? 'en' : 'it')}
+              onClick={() => setLanguage(language === 'en' ? 'ga' : 'en')}
               className="p-2 text-italia-text"
               data-testid="mobile-language-switcher"
             >
