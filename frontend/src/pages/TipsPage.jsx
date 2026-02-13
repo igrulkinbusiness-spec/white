@@ -1,144 +1,84 @@
-import { Lightbulb, Check, AlertTriangle, Clock, Euro, Car } from 'lucide-react';
+import { Lightbulb, Check, AlertTriangle, Car, Smartphone, Cloud } from 'lucide-react';
 import { PageHero } from '../components/shared/PageHero';
 import { ContentSection } from '../components/shared/ContentSection';
 import { InfoCard } from '../components/shared/InfoCard';
 import { useLanguage } from '../i18n';
 
-const HERO_IMAGE = "https://images.unsplash.com/photo-1625869740698-983464d352ee?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NjZ8MHwxfHNlYXJjaHwyfHx2aW50YWdlJTIwRmlhdCUyMGNhciUyMEl0YWx5JTIwc3RyZWV0fGVufDB8fHx8MTc3MDgwNjgzMHww&ixlib=rb-4.1.0&q=85";
+const HERO_IMAGE = "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzl8MHwxfHNlYXJjaHwxfHxJcmVsYW5kJTIwZHJpdmluZ3xlbnwwfHx8fDE3NzA4MDY4MTJ8MA&ixlib=rb-4.1.0&q=85";
 
-const dataIT = {
-  tips: [
-    {
-      category: 'Prima del viaggio',
-      items: [
-        'Ottieni la patente internazionale (IDP) o una traduzione autenticata',
-        'Assicurati di avere la carta verde o un\'assicurazione europea',
-        'Scarica mappe offline su Google Maps o Maps.me',
-        'Installa un\'app con database autovelox (Waze)',
-        'Prenota i parcheggi nelle grandi città in anticipo',
-      ],
-    },
-    {
-      category: 'In viaggio',
-      items: [
-        'Accendi sempre gli anabbaglianti fuori dai centri abitati',
-        'Tieni il giubbotto riflettente nell\'abitacolo, non nel bagagliaio',
-        'Fai il pieno prima di entrare in autostrada — costa di più',
-        'Non entrare nelle corsie gialle Telepass senza dispositivo',
-        'Usa la corsia destra per viaggiare, quella sinistra per sorpassare',
-      ],
-    },
-    {
-      category: 'In città',
-      items: [
-        'Verifica sempre la presenza di ZTL prima di entrare in centro',
-        'Lascia l\'auto nei parcheggi P+R vicino alle stazioni metro',
-        'Usa il disco orario dove richiesto',
-        'Paga subito il parcheggio — le multe partono da 40€',
-        'Fotografa il posto auto e la ricevuta del pagamento',
-      ],
-    },
-    {
-      category: 'Risparmiare',
-      items: [
-        'Usa il self-service — costa 10-15 centesimi in meno',
-        'Evita i distributori in autostrada — maggiorazione del 20%',
-        'Prenota l\'auto in anticipo tramite comparatori',
-        'Non prendere il pieno al noleggio — fallo da solo',
-        'Telepass offre sconti su alcuni tratti',
-      ],
-    },
-  ],
-  commonMistakes: [
-    { mistake: 'Entrare in ZTL', consequence: 'Multa 80-100€ per ogni accesso', prevention: 'Controlla i cartelli, usa il navigatore con ZTL' },
-    { mistake: 'Eccesso di velocità', consequence: 'Multe da 42€, sospensione patente per grandi eccessi', prevention: 'Ricorda il sistema Tutor, usa il navigatore' },
-    { mistake: 'Parcheggio su strisce gialle', consequence: 'Rimozione + multa 85-335€', prevention: 'Parcheggia solo su strisce bianche o blu' },
-    { mistake: 'Dimenticare i pedaggi', consequence: 'Multa + costo del pedaggio', prevention: 'Usa Telepass o paga subito alla cassa' },
-  ],
-  essentialEquipment: ['Giubbotto riflettente (per ogni passeggero)', 'Triangolo di emergenza', 'Documenti di viaggio originali', 'Carta verde assicurazione'],
-  usefulApps: [
-    { name: 'Google Maps', purpose: 'Navigazione, traffico in tempo reale' },
-    { name: 'Waze', purpose: 'Avvisi autovelox e incidenti' },
-    { name: 'ViaMichelin', purpose: 'Calcolo pedaggi e percorsi' },
-    { name: 'Telepass', purpose: 'Gestione pagamenti autostradali' },
-  ],
-  mainTip: 'La cosa più importante è godersi il viaggio. Le strade italiane sono tra le più belle del mondo. Pianifica in anticipo, rispetta le regole e prenditi il tempo per le soste nei paesini lungo il percorso.',
-};
+const tipCategories = [
+  {
+    category: 'Before Your Trip',
+    items: [
+      'Get an International Driving Permit if your licence isn\'t in English',
+      'Book car rental early - prices rise significantly in summer',
+      'Download offline maps - mobile signal is patchy in rural Ireland',
+      'Get travel insurance that covers driving in Ireland',
+      'Check if your insurance covers Irish roads',
+    ],
+  },
+  {
+    category: 'On the Road',
+    items: [
+      'DRIVE ON THE LEFT - check twice before pulling out',
+      'Use low beam headlights in rain and fog',
+      'Pull into passing places on narrow roads to let others pass',
+      'Allow extra time - Irish roads are slower than they look on maps',
+      'Wave to thank other drivers - it\'s the Irish way!',
+    ],
+  },
+  {
+    category: 'In Cities',
+    items: [
+      'Use Park & Ride on the outskirts - city parking is expensive and limited',
+      'Register at eflow.ie if using M50 around Dublin',
+      'Carry coins for parking meters (or use parking apps)',
+      'Watch for bus lanes - fines apply for driving in them',
+      'Avoid driving in Dublin city centre during rush hour (7-9am, 4-7pm)',
+    ],
+  },
+  {
+    category: 'Rural Driving',
+    items: [
+      'Watch for sheep, cattle, and tractors on country roads',
+      'Keep left on blind corners - oncoming traffic may be in your lane!',
+      'Fill up petrol before heading to remote areas',
+      'Roads can flood in heavy rain - avoid fords if water looks deep',
+      'Many rural roads have no footpaths - watch for pedestrians',
+    ],
+  },
+];
 
-const dataEN = {
-  tips: [
-    {
-      category: 'Before the trip',
-      items: [
-        'Get an International Driving Permit (IDP) or notarized translation',
-        'Ensure you have a Green Card or European insurance',
-        'Download offline maps on Google Maps or Maps.me',
-        'Install an app with speed camera database (Waze)',
-        'Book parking in major cities in advance',
-      ],
-    },
-    {
-      category: 'On the road',
-      items: [
-        'Always turn on low beam lights outside built-up areas',
-        'Keep the reflective vest in the cabin, not in the trunk',
-        'Fill up before entering the highway — it\'s more expensive there',
-        'Don\'t enter yellow Telepass lanes without a device',
-        'Use the right lane for driving, left lane for overtaking',
-      ],
-    },
-    {
-      category: 'In cities',
-      items: [
-        'Always check for ZTL before entering city centers',
-        'Leave your car at P+R parking near metro stations',
-        'Use the parking disc (disco orario) where required',
-        'Pay for parking immediately — fines start from €40',
-        'Photograph your parking spot and payment receipt',
-      ],
-    },
-    {
-      category: 'Saving money',
-      items: [
-        'Use self-service — 10-15 cents cheaper',
-        'Avoid highway gas stations — 20% markup',
-        'Book cars in advance through comparison sites',
-        'Don\'t take full tank at rental — fill it yourself',
-        'Telepass offers discounts on some sections',
-      ],
-    },
-  ],
-  commonMistakes: [
-    { mistake: 'Entering ZTL', consequence: 'Fine €80-100 for each entry', prevention: 'Check signs, use navigator with ZTL' },
-    { mistake: 'Speeding', consequence: 'Fines from €42, license suspension for major violations', prevention: 'Remember Tutor system, use navigator' },
-    { mistake: 'Parking on yellow lines', consequence: 'Towing + fine €85-335', prevention: 'Park only on white or blue lines' },
-    { mistake: 'Forgetting tolls', consequence: 'Fine + toll cost', prevention: 'Use Telepass or pay immediately at booth' },
-  ],
-  essentialEquipment: ['Reflective vest (for each passenger)', 'Warning triangle', 'Original travel documents', 'Insurance Green Card'],
-  usefulApps: [
-    { name: 'Google Maps', purpose: 'Navigation, real-time traffic' },
-    { name: 'Waze', purpose: 'Speed camera and accident alerts' },
-    { name: 'ViaMichelin', purpose: 'Toll calculation and routes' },
-    { name: 'Telepass', purpose: 'Highway payment management' },
-  ],
-  mainTip: 'The most important thing is to enjoy the journey. Italian roads are among the most beautiful in the world. Plan ahead, follow the rules, and take time to stop in small towns along the way.',
-};
+const commonMistakes = [
+  { mistake: 'Looking the wrong way', consequence: 'Accidents at junctions', prevention: 'Look RIGHT first - traffic comes from the right!' },
+  { mistake: 'Forgetting M50 toll', consequence: 'Fine starting at €41.50', prevention: 'Pay via eflow.ie by 8pm next day' },
+  { mistake: 'Underestimating distances', consequence: 'Missed appointments, rushed driving', prevention: 'Add 50% to Google Maps time for rural areas' },
+  { mistake: 'Parking on double yellows', consequence: 'Clamping (€80-125 release)', prevention: 'Always check signs before leaving car' },
+];
+
+const usefulApps = [
+  { name: 'Google Maps', purpose: 'Navigation - download offline maps for rural areas' },
+  { name: 'eflow', purpose: 'Pay M50 tolls - register before you travel' },
+  { name: 'ParkingTag', purpose: 'Pay for parking by phone' },
+  { name: 'AA Roadwatch', purpose: 'Traffic updates and roadworks' },
+  { name: 'Met Éireann', purpose: 'Irish weather forecasts - check before scenic drives' },
+  { name: 'what3words', purpose: 'Precise location for emergencies in remote areas' },
+];
 
 export const TipsPage = () => {
-  const { t, language } = useLanguage();
-  const data = language === 'en' ? dataEN : dataIT;
+  const { t } = useLanguage();
 
   return (
     <div data-testid="tips-page">
       <PageHero 
-        title={t('tips.title')}
-        subtitle={t('tips.subtitle')}
+        title="Driving Tips"
+        subtitle="Practical advice for a safe and enjoyable driving experience in Ireland."
         image={HERO_IMAGE}
       />
 
-      <ContentSection title={t('tips.practicalTitle')} subtitle={t('tips.practicalSubtitle')} id="tips">
+      <ContentSection title="Essential Tips" subtitle="By Category" id="tips">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {data.tips.map((category) => (
+          {tipCategories.map((category) => (
             <div key={category.category} className="bg-white border border-italia-border p-6">
               <h3 className="font-serif text-xl font-medium text-italia-text mb-4">
                 {category.category}
@@ -160,22 +100,22 @@ export const TipsPage = () => {
         <div className="container mx-auto px-4 md:px-8 max-w-7xl">
           <div className="mb-12">
             <span className="inline-block font-mono text-xs uppercase tracking-widest text-italia-red mb-4">
-              {t('tips.mistakesSubtitle')}
+              Learn from Others
             </span>
             <h2 className="font-serif text-3xl md:text-4xl font-medium text-italia-text">
-              {t('tips.mistakesTitle')}
+              Common Mistakes to Avoid
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {data.commonMistakes.map((item) => (
+            {commonMistakes.map((item) => (
               <div key={item.mistake} className="p-6 border-l-4 border-italia-red bg-italia-red/5">
                 <h3 className="font-serif text-lg font-medium text-italia-text mb-2">
                   {item.mistake}
                 </h3>
                 <p className="text-italia-red text-sm mb-3">{item.consequence}</p>
                 <p className="text-italia-text-muted text-sm">
-                  <strong>{language === 'en' ? 'How to avoid:' : 'Come evitare:'}</strong> {item.prevention}
+                  <strong>Prevention:</strong> {item.prevention}
                 </p>
               </div>
             ))}
@@ -183,40 +123,51 @@ export const TipsPage = () => {
         </div>
       </section>
 
-      <ContentSection title={t('tips.equipmentTitle')} subtitle={t('tips.equipmentSubtitle')} id="equipment">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <InfoCard icon={Car} title={t('tips.mandatoryTitle')} variant="warning">
-            <ul className="space-y-2 mt-3">
-              {data.essentialEquipment.map((item, index) => (
-                <li key={index}>• {item}</li>
-              ))}
-            </ul>
-          </InfoCard>
-          
-          <div className="bg-white border border-italia-border p-6">
-            <h3 className="font-serif text-xl font-medium text-italia-text mb-4">
-              {t('tips.appsTitle')}
-            </h3>
-            <div className="space-y-4">
-              {data.usefulApps.map((app) => (
-                <div key={app.name} className="flex justify-between items-center py-2 border-b border-italia-border last:border-0">
-                  <span className="font-medium text-italia-text">{app.name}</span>
-                  <span className="text-sm text-italia-text-muted">{app.purpose}</span>
-                </div>
-              ))}
+      <ContentSection title="Useful Apps" subtitle="Download Before You Go" id="apps">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {usefulApps.map((app) => (
+            <div key={app.name} className="flex items-center gap-4 p-4 bg-white border border-italia-border">
+              <Smartphone className="w-8 h-8 text-italia-green flex-shrink-0" />
+              <div>
+                <h4 className="font-medium text-italia-text">{app.name}</h4>
+                <p className="text-sm text-italia-text-muted">{app.purpose}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </ContentSection>
+
+      <section className="py-16 bg-italia-gold/10" data-testid="weather-section">
+        <div className="container mx-auto px-4 md:px-8 max-w-7xl">
+          <div className="flex items-start gap-6">
+            <Cloud className="w-12 h-12 text-italia-gold flex-shrink-0" />
+            <div>
+              <h2 className="font-serif text-2xl font-medium text-italia-text mb-4">Weather Warning</h2>
+              <p className="text-italia-text-muted mb-4">
+                Irish weather is notoriously changeable. "Four seasons in one day" is a real thing!
+              </p>
+              <ul className="space-y-2 text-italia-text-muted">
+                <li>• Check Met Éireann forecast before scenic drives</li>
+                <li>• Pack waterproofs even if it looks sunny</li>
+                <li>• Mountain roads can be foggy when valleys are clear</li>
+                <li>• Rain reduces visibility and increases stopping distances</li>
+                <li>• Winter: Watch for black ice, especially in mornings</li>
+              </ul>
             </div>
           </div>
         </div>
-      </ContentSection>
+      </section>
 
       <section className="py-16 bg-italia-green" data-testid="main-tip-section">
         <div className="container mx-auto px-4 md:px-8 max-w-7xl text-center">
           <Lightbulb className="w-12 h-12 text-italia-gold mx-auto mb-6" />
           <h2 className="font-serif text-3xl md:text-4xl font-medium text-white mb-6">
-            {t('tips.mainTipTitle')}
+            Top Tip
           </h2>
           <p className="text-lg text-white/90 max-w-3xl mx-auto leading-relaxed">
-            {data.mainTip}
+            Relax and enjoy the journey! Irish roads might be slower and narrower than you're used to, 
+            but that's part of the charm. Stop in villages, chat with locals, and don't rush. 
+            Some of the best experiences in Ireland happen when you take your time.
           </p>
         </div>
       </section>
